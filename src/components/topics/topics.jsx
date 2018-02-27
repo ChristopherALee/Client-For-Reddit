@@ -33,18 +33,39 @@ class Topics extends React.Component {
   }
 
   componentDidMount() {
+    let that = this;
     this.props.fetchRedditAccessToken().then(success => {
+      // dispatch loading start
+
       for (let i = 0; i < TOPICS.length; i++) {
-        this.props.fetchSubReddits(this.props.accessToken, TOPICS[i]);
+        this.props
+          .fetchSubReddits(this.props.accessToken, TOPICS[i])
+          .then(success => {
+            for (let j = 0; j < success.length; j++) {
+              that.props.fetchSubRedditAbout(
+                this.props.accessToken,
+                success[j].name
+              );
+            }
+          });
       }
+
+      // dispatch loading end
     });
   }
 
   redditTopics() {
-    return TOPICS.map((topic, idx) => {
+    let topicsPoints = this.props.topicsPoints;
+    let topics = Object.values(topicsPoints).reverse();
+    let points = Object.keys(topicsPoints).reverse();
+
+    return topics.map((topic, idx) => {
       return (
         <Link to={`/topics/${topic}`} key={idx}>
-          <p className="topic">{topic}</p>
+          <p className="topic">
+            {topic}
+            <p className="topic-points">Points: {points[idx]}</p>
+          </p>
         </Link>
       );
     });

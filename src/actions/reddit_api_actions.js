@@ -13,6 +13,8 @@ const receiveAccessToken = token => {
 };
 
 const receiveSubReddits = (subReddits, topic) => {
+  subReddits = subReddits.map(subReddit => subReddit.name);
+
   return {
     type: RECEIVE_SUBREDDITS,
     subReddits,
@@ -20,7 +22,7 @@ const receiveSubReddits = (subReddits, topic) => {
   };
 };
 
-const receiveSubRedditAbout = about => {
+const receiveSubRedditAbout = (about, subReddit) => {
   let points = Object.values(about.data.children)
     .map(post => {
       return post.data.ups - post.data.downs;
@@ -29,6 +31,7 @@ const receiveSubRedditAbout = about => {
 
   return {
     type: RECEIVE_SUBREDDIT_ABOUT,
+    subReddit,
     points
   };
 };
@@ -62,7 +65,7 @@ export const fetchSubReddits = (token, topic) => dispatch => {
 
 export const fetchSubRedditAbout = (token, subReddit) => dispatch => {
   return RedditApiUtil.fetchSubRedditAbout(token, subReddit).then(about => {
-    dispatch(receiveSubRedditAbout(about));
+    dispatch(receiveSubRedditAbout(about, subReddit));
     return about;
   });
 };

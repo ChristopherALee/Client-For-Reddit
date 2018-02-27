@@ -13,6 +13,8 @@ a {
 }
 
 .topic {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
   background-color: #fafafa;
   padding: 20px;
@@ -23,4 +25,9 @@ a {
 
 .topic:hover {
   background-color: #ededed;
+}
+
+.topic-points {
+  font-size: 12px;
+  color: grey;
 }
