@@ -12,12 +12,14 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRedditAccessToken().then(data => {
-      if (this.props.location.pathname.includes("topics")) {
-        let currentTopic = this.props.location.pathname.slice(8).toLowerCase();
-        this.props.fetchSubReddits(this.props.accessToken, currentTopic);
-      }
-    });
+    // this.props.fetchRedditAccessToken().then(data => {
+    //   if (this.props.location.pathname.includes("topics")) {
+    //     let currentTopic = this.props.location.pathname.slice(8).toLowerCase();
+    //     this.props.fetchSubReddits(this.props.accessToken, currentTopic);
+    //   }
+    //
+    //   this.props.fetchSubRedditAbout(this.props.accessToken, "naruto");
+    // });
   }
 
   componentWillReceiveProps(newProps) {

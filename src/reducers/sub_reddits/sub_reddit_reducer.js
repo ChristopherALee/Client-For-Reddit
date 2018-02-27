@@ -6,7 +6,9 @@ const subRedditReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_SUBREDDITS:
-      newState = Object.assign({}, state);
+      newState = Object.assign({}, state, {
+        [action.topic]: action.subReddits
+      });
       return newState;
     default:
       return state;

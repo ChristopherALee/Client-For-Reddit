@@ -2,6 +2,8 @@ import * as RedditApiUtil from "../util/reddit_api_util";
 
 export const RECEIVE_ACCESS_TOKEN = "RECEIVE_ACCESS_TOKEN";
 export const RECEIVE_SUBREDDITS = "RECEIVE_SUBREDDITS";
+export const RECEIVE_SUBREDDIT_ABOUT = "RECEIVE_SUBREDDIT_ABOUT";
+export const RECEIVE_SUBREDDIT_POINTS = "RECEIVE_SUBREDDIT_POINTS";
 
 const receiveAccessToken = token => {
   return {
@@ -10,10 +12,37 @@ const receiveAccessToken = token => {
   };
 };
 
-const receiveSubReddits = subReddits => {
+const receiveSubReddits = (subReddits, topic) => {
   return {
     type: RECEIVE_SUBREDDITS,
-    subReddits
+    subReddits,
+    topic
+  };
+};
+
+const receiveSubRedditAbout = about => {
+  let points = Object.values(about.data.children)
+    .map(post => {
+      return post.data.ups - post.data.downs;
+    })
+    .reduce((acc, el) => acc + el);
+
+  return {
+    type: RECEIVE_SUBREDDIT_ABOUT,
+    points
+  };
+};
+
+const receiveSubRedditPoints = about => {
+  let points = Object.values(about.data.children)
+    .map(post => {
+      return post.data.ups - post.data.downs;
+    })
+    .reduce((acc, el) => acc + el);
+
+  return {
+    type: RECEIVE_SUBREDDIT_POINTS,
+    points
   };
 };
 
@@ -24,9 +53,23 @@ export const fetchRedditAccessToken = () => dispatch => {
   });
 };
 
-export const fetchSubReddits = (token, subReddit) => dispatch => {
-  return RedditApiUtil.fetchSubReddits(token, subReddit).then(subReddits => {
-    dispatch(receiveSubReddits(subReddits));
+export const fetchSubReddits = (token, topic) => dispatch => {
+  return RedditApiUtil.fetchSubReddits(token, topic).then(subReddits => {
+    dispatch(receiveSubReddits(subReddits, topic));
     return subReddits;
+  });
+};
+
+export const fetchSubRedditAbout = (token, subReddit) => dispatch => {
+  return RedditApiUtil.fetchSubRedditAbout(token, subReddit).then(about => {
+    dispatch(receiveSubRedditAbout(about));
+    return about;
+  });
+};
+
+export const fetchSubRedditPoints = (token, subReddit) => dispatch => {
+  return RedditApiUtil.fetchSubRedditAbout(token, subReddit).then(about => {
+    dispatch(receiveSubRedditPoints(about));
+    return about;
   });
 };

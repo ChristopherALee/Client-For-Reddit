@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import MainPage from "./main_page";
 import {
   fetchRedditAccessToken,
-  fetchSubReddits
+  fetchSubReddits,
+  fetchSubRedditAbout
 } from "../../actions/reddit_api_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -20,7 +21,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchRedditAccessToken: () => dispatch(fetchRedditAccessToken()),
     fetchSubReddits: (token, subReddit) =>
-      dispatch(fetchSubReddits(token, subReddit))
+      dispatch(fetchSubReddits(token, subReddit)),
+    fetchSubRedditAbout: (token, subReddit) =>
+      dispatch(fetchSubRedditAbout(token, subReddit))
   };
 };
 
