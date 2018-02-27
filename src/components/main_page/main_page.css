@@ -1,0 +1,30 @@
+#main-page {
+  height: 100vh;
+  width: 100vw;
+  font-family: Verdana, sans-serif;
+}
+
+.reddit-header {
+  background-color: #cee3f8;
+  border-bottom: 1px solid #5f99cf;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+.reddit-header:hover {
+  cursor: pointer;
+}
+.logo {
+  height: 50px;
+  width: 50px;
+  background-image: url("../../images/Reddit_Logo2.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.reddit-header-title {
+  font-weight: 600;
+  font-size: 20px;
+}

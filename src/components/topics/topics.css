@@ -1,0 +1,26 @@
+#topics-container {
+  padding: 80px 20px 20px 20px;
+}
+
+.topics-header {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+}
+
+.topic {
+  margin-bottom: 10px;
+  background-color: #fafafa;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  color: rgb(0, 0, 238);
+}
+
+.topic:hover {
+  background-color: #ededed;
+}
