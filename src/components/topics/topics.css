@@ -8,6 +8,10 @@
   font-weight: 600;
 }
 
+.reddit-topics {
+  min-width: 375px;
+}
+
 a {
   text-decoration: none;
 }
@@ -15,6 +19,7 @@ a {
 .topic {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
   background-color: #fafafa;
   padding: 20px;

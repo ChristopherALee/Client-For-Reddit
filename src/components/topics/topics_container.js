@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchRedditAccessToken: () => dispatch(fetchRedditAccessToken()),
     fetchSubReddits: (accessToken, topic) =>
       dispatch(fetchSubReddits(accessToken, topic)),
-    fetchSubRedditAbout: (accessToken, subReddit) =>
+    fetchSubRedditAbout: (accessToken, subReddit, stopLoading) =>
       dispatch(fetchSubRedditAbout(accessToken, subReddit))
   };
 };

@@ -5,6 +5,21 @@ export const RECEIVE_SUBREDDITS = "RECEIVE_SUBREDDITS";
 export const RECEIVE_SUBREDDIT_ABOUT = "RECEIVE_SUBREDDIT_ABOUT";
 export const RECEIVE_SUBREDDIT_POINTS = "RECEIVE_SUBREDDIT_POINTS";
 
+// export const SHOW_LOADING = "SHOW_LOADING";
+// export const HIDE_LOADING = "HIDE_LOADING";
+// const showLoading = () => {
+//   return {
+//     type: SHOW_LOADING,
+//     loadingShown: true
+//   };
+// };
+// const hideLoading = () => {
+//   return {
+//     type: HIDE_LOADING,
+//     loadingShown: false
+//   };
+// };
+
 const receiveAccessToken = token => {
   return {
     type: RECEIVE_ACCESS_TOKEN,

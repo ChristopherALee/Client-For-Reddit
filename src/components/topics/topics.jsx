@@ -35,8 +35,6 @@ class Topics extends React.Component {
   componentDidMount() {
     let that = this;
     this.props.fetchRedditAccessToken().then(success => {
-      // dispatch loading start
-
       for (let i = 0; i < TOPICS.length; i++) {
         this.props
           .fetchSubReddits(this.props.accessToken, TOPICS[i])
@@ -49,8 +47,6 @@ class Topics extends React.Component {
             }
           });
       }
-
-      // dispatch loading end
     });
   }
 
@@ -62,10 +58,10 @@ class Topics extends React.Component {
     return topics.map((topic, idx) => {
       return (
         <Link to={`/topics/${topic}`} key={idx}>
-          <p className="topic">
-            {topic}
+          <div className="topic">
+            <p className="topic-name">{topic}</p>
             <p className="topic-points">Points: {points[idx]}</p>
-          </p>
+          </div>
         </Link>
       );
     });

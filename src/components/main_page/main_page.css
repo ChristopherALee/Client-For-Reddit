@@ -28,3 +28,12 @@
   font-weight: 600;
   font-size: 20px;
 }
+
+#loading {
+  z-index: 5;
+  position: absolute;
+  color: white;
+  background-color: black;
+  opacity: 0.5;
+  right: 0px;
+}

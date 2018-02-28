@@ -9,30 +9,32 @@ class MainPage extends React.Component {
     super(props);
 
     this.homePage = this.homePage.bind(this);
+    this.loading = this.loading.bind(this);
   }
 
-  componentDidMount() {
-    // this.props.fetchRedditAccessToken().then(data => {
-    //   if (this.props.location.pathname.includes("topics")) {
-    //     let currentTopic = this.props.location.pathname.slice(8).toLowerCase();
-    //     this.props.fetchSubReddits(this.props.accessToken, currentTopic);
-    //   }
-    //
-    //   this.props.fetchSubRedditAbout(this.props.accessToken, "naruto");
-    // });
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      if (newProps.location.pathname.includes("topics")) {
-        let currentTopic = newProps.location.pathname.slice(8).toLowerCase();
-        this.props.fetchSubReddits(this.props.accessToken, currentTopic);
-      }
-    }
-  }
+  // componentWillReceiveProps(newProps) {
+  //   if (this.props.location.pathname !== newProps.location.pathname) {
+  //     if (newProps.location.pathname.includes("topics")) {
+  //       let currentTopic = newProps.location.pathname.slice(8).toLowerCase();
+  //       this.props.fetchSubReddits(this.props.accessToken, currentTopic);
+  //     }
+  //   }
+  // }
 
   homePage() {
     this.props.history.push("/");
+  }
+
+  loading() {
+    if (this.props.loadingShown) {
+      return (
+        <div id="loading">
+          <p>Loading</p>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -42,6 +44,8 @@ class MainPage extends React.Component {
           <div className="logo" />
           <p className="reddit-header-title">A Client for Reddit</p>
         </div>
+
+        {this.loading()}
 
         <Switch>
           <Route path="/topics/" component={SubRedditsContainer} />

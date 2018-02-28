@@ -5,10 +5,41 @@ import "./sub_reddits.css";
 class SubReddits extends React.Component {
   constructor(props) {
     super(props);
+
+    this.subReddits = this.subReddits.bind(this);
+  }
+
+  componentDidMount() {
+    this.props
+      .fetchRedditAccessToken()
+      .then(success =>
+        this.props.fetchSubReddits(this.props.accessToken, this.props.topic)
+      );
+  }
+
+  subReddits() {
+    let subReddits;
+    if (this.props.subReddits) {
+      subReddits = this.props.subReddits;
+
+      return subReddits.map((subReddit, idx) => {
+        return (
+          <div className="subreddit-item" key={idx}>
+            <p>{`/r/${subReddit}`}</p>
+          </div>
+        );
+      });
+    }
   }
 
   render() {
-    return <section id="subreddit-list">subreddits</section>;
+    return (
+      <section id="subreddit-container">
+        <div className="subreddit-list-header">Top SubReddits</div>
+
+        <div className="subreddit-list">{this.subReddits()}</div>
+      </section>
+    );
   }
 }
 

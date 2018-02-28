@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    accessToken: accessToken
+    accessToken: accessToken,
+    loadingShown: state.ui.loadingShown
   };
 };
 
