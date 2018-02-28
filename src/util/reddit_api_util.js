@@ -37,7 +37,7 @@ export const fetchSubRedditAbout = (token, subReddit) => {
 export const fetchSubRedditPosts = (token, subReddit) => {
   return $.ajax({
     method: "GET",
-    url: `https://oauth.reddit.com/r/${subReddit}?limit=100`,
+    url: `https://oauth.reddit.com/r/${subReddit}?limit=200`,
     headers: {
       Authorization: `bearer ${token}`
     }

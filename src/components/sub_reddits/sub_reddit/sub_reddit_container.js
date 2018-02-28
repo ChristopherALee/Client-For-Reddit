@@ -16,7 +16,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   let subRedditDetails;
-  if (state.entities.subReddits[currentSubReddit]) {
+  if (
+    state.entities.subReddits[currentSubReddit] &&
+    state.entities.subReddits[currentSubReddit].about
+  ) {
+    debugger;
     subRedditDetails = state.entities.subReddits[currentSubReddit];
   }
 
