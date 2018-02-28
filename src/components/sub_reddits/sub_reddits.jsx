@@ -35,7 +35,13 @@ class SubReddits extends React.Component {
   render() {
     return (
       <section id="subreddit-container">
-        <div className="subreddit-list-header">Top SubReddits</div>
+        <Link to="/">
+          <p className="see-all-topics-link">See All Topics</p>
+        </Link>
+
+        <div className="subreddit-list-header">
+          <p>Top SubReddits</p>
+        </div>
 
         <div className="subreddit-list">{this.subReddits()}</div>
       </section>

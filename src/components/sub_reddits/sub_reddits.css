@@ -1,0 +1,14 @@
+#subreddit-container {
+  padding: 80px 20px 20px 20px;
+}
+
+.see-all-topics-link {
+  color: rgb(0, 0, 238);
+  margin-bottom: 20px;
+}
+
+.subreddit-list-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
