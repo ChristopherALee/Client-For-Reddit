@@ -21,7 +21,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   let relevantSubReddits;
-  let subRedditCollection;
   debugger;
   if (
     subReddits &&
@@ -29,10 +28,6 @@ const mapStateToProps = (state, ownProps) => {
       Object.keys(state.entities.subReddits).includes(subReddit)
     )
   ) {
-    subRedditCollection = subReddits.filter(subReddit =>
-      Object.keys(state.entities.subReddits).includes(subReddit)
-    );
-
     if (
       Object.values(state.entities.subReddits).some(
         subReddit => subReddit.about

@@ -33,9 +33,8 @@ class SubReddits extends React.Component {
   subReddits() {
     let subReddits;
     let subRedditDetails;
-    // debugger;
+
     if (this.props.relevantSubReddits) {
-      // debugger;
       subRedditDetails = this.props.relevantSubReddits;
 
       if (subRedditDetails.length) {
@@ -54,16 +53,22 @@ class SubReddits extends React.Component {
       }
 
       let subRedditItems = subRedditDetails.map(subReddit => {
+        let description;
+        if (!subReddit.about.data.public_description) {
+          description = "No description";
+        } else {
+          description = subReddit.about.data.public_description;
+        }
+
         return (
           <div className="subreddit-item" key={subReddit.about.data.id}>
             <p className="subreddit-name">{subReddit.about.data.url}</p>
-            <p className="subreddit-description">
-              {subReddit.about.data.public_description}
-            </p>
+            <p className="subreddit-description">{description}</p>
             <p className="subreddit-mini-stats">
-              Total Points: {subReddit.points},{" "}
-              {subReddit.about.data.subscribers} subscribers,{" "}
-              {subReddit.about.data.accounts_active} active users
+              <strong>{subReddit.points}</strong> total points,{" "}
+              <strong>{subReddit.about.data.subscribers}</strong> subscribers,{" "}
+              <strong>{subReddit.about.data.accounts_active}</strong> active
+              users
             </p>
           </div>
         );

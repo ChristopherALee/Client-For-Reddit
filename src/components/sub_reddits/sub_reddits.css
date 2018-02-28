@@ -15,4 +15,32 @@
 
 .subreddit-item {
   margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.subreddit-item:hover {
+  background-color: #f0f3fc;
+  border: 1px solid #ccc;
+}
+
+.subreddit-name {
+  color: rgb(0, 0, 238);
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.subreddit-description {
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  padding: 5px;
+}
+
+.subreddit-mini-stats {
+  font-size: 12px;
 }
