@@ -3,7 +3,7 @@ import MainPage from "./main_page";
 import {
   fetchRedditAccessToken,
   fetchSubReddits,
-  fetchSubRedditAbout
+  fetchSubRedditPosts
 } from "../../actions/reddit_api_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -23,8 +23,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchRedditAccessToken: () => dispatch(fetchRedditAccessToken()),
     fetchSubReddits: (token, subReddit) =>
       dispatch(fetchSubReddits(token, subReddit)),
-    fetchSubRedditAbout: (token, subReddit) =>
-      dispatch(fetchSubRedditAbout(token, subReddit))
+    fetchSubRedditPosts: (token, subReddit) =>
+      dispatch(fetchSubRedditPosts(token, subReddit))
   };
 };
 

@@ -3,7 +3,7 @@ import Topics from "./topics";
 import {
   fetchRedditAccessToken,
   fetchSubReddits,
-  fetchSubRedditAbout
+  fetchSubRedditPosts
 } from "../../actions/reddit_api_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,29 +13,6 @@ const mapStateToProps = (state, ownProps) => {
     accessToken = state.session.token;
     subReddits = state.entities.subReddits;
   }
-
-  const TOPICS = [
-    "Architecture",
-    "Art",
-    "Business",
-    "Education",
-    "Entertainment",
-    "Gaming",
-    "General",
-    "Hobbies and Interests",
-    "Law",
-    "Lifestyle",
-    "Locations",
-    "Meta",
-    "Music",
-    "News and Politics",
-    "Science",
-    "Social Science and Humanities",
-    "Sports",
-    "Technology",
-    "Travel",
-    "Other"
-  ];
 
   let topicsPoints = {
     Architecture: 0,
@@ -60,8 +37,8 @@ const mapStateToProps = (state, ownProps) => {
     Other: 0
   };
 
-  for (let i = 0; i < TOPICS.length; i++) {
-    let currentTopic = TOPICS[i];
+  for (let i = 0; i < Object.keys(topicsPoints).length; i++) {
+    let currentTopic = Object.keys(topicsPoints)[i];
 
     if (subReddits && state.entities.topics[currentTopic]) {
       state.entities.topics[currentTopic].forEach(subReddit => {
@@ -94,8 +71,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchRedditAccessToken: () => dispatch(fetchRedditAccessToken()),
     fetchSubReddits: (accessToken, topic) =>
       dispatch(fetchSubReddits(accessToken, topic)),
-    fetchSubRedditAbout: (accessToken, subReddit, stopLoading) =>
-      dispatch(fetchSubRedditAbout(accessToken, subReddit))
+    fetchSubRedditPosts: (accessToken, subReddit, stopLoading) =>
+      dispatch(fetchSubRedditPosts(accessToken, subReddit))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topics);

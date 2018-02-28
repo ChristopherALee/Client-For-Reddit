@@ -40,7 +40,7 @@ class Topics extends React.Component {
           .fetchSubReddits(this.props.accessToken, TOPICS[i])
           .then(success => {
             for (let j = 0; j < success.length; j++) {
-              that.props.fetchSubRedditAbout(
+              that.props.fetchSubRedditPosts(
                 this.props.accessToken,
                 success[j].name
               );

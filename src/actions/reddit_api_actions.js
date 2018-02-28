@@ -3,6 +3,7 @@ import * as RedditApiUtil from "../util/reddit_api_util";
 export const RECEIVE_ACCESS_TOKEN = "RECEIVE_ACCESS_TOKEN";
 export const RECEIVE_SUBREDDITS = "RECEIVE_SUBREDDITS";
 export const RECEIVE_SUBREDDIT_ABOUT = "RECEIVE_SUBREDDIT_ABOUT";
+export const RECEIVE_SUBREDDIT_POSTS = "RECEIVE_SUBREDDIT_POSTS";
 export const RECEIVE_SUBREDDIT_POINTS = "RECEIVE_SUBREDDIT_POINTS";
 
 // export const SHOW_LOADING = "SHOW_LOADING";
@@ -38,16 +39,24 @@ const receiveSubReddits = (subReddits, topic) => {
 };
 
 const receiveSubRedditAbout = (about, subReddit) => {
-  let points = Object.values(about.data.children)
+  return {
+    type: RECEIVE_SUBREDDIT_ABOUT,
+    subReddit,
+    about
+  };
+};
+
+const receiveSubRedditPosts = (data, subReddit) => {
+  let points = Object.values(data.data.children)
     .map(post => {
       return post.data.ups - post.data.downs;
     })
     .reduce((acc, el) => acc + el);
 
   return {
-    type: RECEIVE_SUBREDDIT_ABOUT,
+    type: RECEIVE_SUBREDDIT_POSTS,
     subReddit,
-    posts: about.data.children,
+    posts: data.data.children,
     points
   };
 };
@@ -86,8 +95,15 @@ export const fetchSubRedditAbout = (token, subReddit) => dispatch => {
   });
 };
 
+export const fetchSubRedditPosts = (token, subReddit) => dispatch => {
+  return RedditApiUtil.fetchSubRedditPosts(token, subReddit).then(data => {
+    dispatch(receiveSubRedditPosts(data, subReddit));
+    return data;
+  });
+};
+
 export const fetchSubRedditPoints = (token, subReddit) => dispatch => {
-  return RedditApiUtil.fetchSubRedditAbout(token, subReddit).then(about => {
+  return RedditApiUtil.fetchSubRedditPosts(token, subReddit).then(about => {
     dispatch(receiveSubRedditPoints(about));
     return about;
   });

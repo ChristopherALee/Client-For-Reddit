@@ -12,18 +12,22 @@ class SubReddits extends React.Component {
   componentDidMount() {
     let that = this;
 
-    this.props.fetchRedditAccessToken().then(success =>
+    this.props.fetchRedditAccessToken().then(success => {
       this.props
         .fetchSubReddits(this.props.accessToken, this.props.topic)
         .then(success => {
           for (let i = 0; i < success.length; i++) {
-            that.props.fetchSubRedditAbout(
-              this.props.accessToken,
-              success[i].name
-            );
+            that.props
+              .fetchSubRedditPosts(this.props.accessToken, success[i].name)
+              .then(success => {
+                this.props.fetchSubRedditAbout(
+                  this.props.accessToken,
+                  success.data.children[0].data.subreddit
+                );
+              });
           }
-        })
-    );
+        });
+    });
   }
 
   subReddits() {
