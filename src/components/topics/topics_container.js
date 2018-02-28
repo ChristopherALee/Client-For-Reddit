@@ -71,8 +71,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchRedditAccessToken: () => dispatch(fetchRedditAccessToken()),
     fetchSubReddits: (accessToken, topic) =>
       dispatch(fetchSubReddits(accessToken, topic)),
-    fetchSubRedditPosts: (accessToken, subReddit, stopLoading) =>
-      dispatch(fetchSubRedditPosts(accessToken, subReddit))
+    fetchSubRedditPosts: (accessToken, subReddit, isLoading) =>
+      dispatch(fetchSubRedditPosts(accessToken, subReddit, isLoading))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topics);

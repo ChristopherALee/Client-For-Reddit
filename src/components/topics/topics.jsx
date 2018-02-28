@@ -33,19 +33,28 @@ class Topics extends React.Component {
   }
 
   componentDidMount() {
-    let that = this;
+    let counter = 0;
+
     this.props.fetchRedditAccessToken().then(success => {
       for (let i = 0; i < TOPICS.length; i++) {
+        let isLoading = true;
+        if (counter === TOPICS.length - 2) {
+          isLoading = false;
+        }
+
         this.props
           .fetchSubReddits(this.props.accessToken, TOPICS[i])
           .then(success => {
             for (let j = 0; j < success.length; j++) {
-              that.props.fetchSubRedditPosts(
+              this.props.fetchSubRedditPosts(
                 this.props.accessToken,
-                success[j].name
+                success[j].name,
+                isLoading
               );
             }
           });
+
+        counter += 1;
       }
     });
   }

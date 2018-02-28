@@ -29,7 +29,7 @@ class MainPage extends React.Component {
     if (this.props.loadingShown) {
       return (
         <div id="loading">
-          <p>Loading</p>
+          <p>Loading...</p>
         </div>
       );
     } else {

@@ -6,20 +6,20 @@ export const RECEIVE_SUBREDDIT_ABOUT = "RECEIVE_SUBREDDIT_ABOUT";
 export const RECEIVE_SUBREDDIT_POSTS = "RECEIVE_SUBREDDIT_POSTS";
 export const RECEIVE_SUBREDDIT_POINTS = "RECEIVE_SUBREDDIT_POINTS";
 
-// export const SHOW_LOADING = "SHOW_LOADING";
-// export const HIDE_LOADING = "HIDE_LOADING";
-// const showLoading = () => {
-//   return {
-//     type: SHOW_LOADING,
-//     loadingShown: true
-//   };
-// };
-// const hideLoading = () => {
-//   return {
-//     type: HIDE_LOADING,
-//     loadingShown: false
-//   };
-// };
+export const SHOW_LOADING = "SHOW_LOADING";
+export const HIDE_LOADING = "HIDE_LOADING";
+const showLoading = () => {
+  return {
+    type: SHOW_LOADING,
+    loadingShown: true
+  };
+};
+const hideLoading = () => {
+  return {
+    type: HIDE_LOADING,
+    loadingShown: false
+  };
+};
 
 const receiveAccessToken = token => {
   return {
@@ -75,6 +75,8 @@ const receiveSubRedditPoints = about => {
 };
 
 export const fetchRedditAccessToken = () => dispatch => {
+  dispatch(showLoading());
+
   return RedditApiUtil.redditAPI().then(data => {
     dispatch(receiveAccessToken(data.access_token));
     return data;
@@ -95,9 +97,16 @@ export const fetchSubRedditAbout = (token, subReddit) => dispatch => {
   });
 };
 
-export const fetchSubRedditPosts = (token, subReddit) => dispatch => {
+export const fetchSubRedditPosts = (
+  token,
+  subReddit,
+  isLoading
+) => dispatch => {
   return RedditApiUtil.fetchSubRedditPosts(token, subReddit).then(data => {
     dispatch(receiveSubRedditPosts(data, subReddit));
+    if (!isLoading) {
+      dispatch(hideLoading());
+    }
     return data;
   });
 };
