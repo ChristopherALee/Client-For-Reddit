@@ -36,7 +36,6 @@ class SubRedditList extends React.Component {
   }
 
   subReddits() {
-    let subReddits;
     let subRedditDetails;
 
     if (this.props.relevantSubReddits) {
