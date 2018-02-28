@@ -61,8 +61,14 @@ class SubReddits extends React.Component {
         }
 
         return (
-          <div className="subreddit-item" key={subReddit.about.data.id}>
-            <p className="subreddit-name">{subReddit.about.data.url}</p>
+          <Link
+            to={`/r/${subReddit.about.data.display_name}`}
+            className="subreddit-item"
+            key={subReddit.about.data.id}
+          >
+            <p className="subreddit-name">
+              {subReddit.about.data.url}: {subReddit.about.data.display_name}
+            </p>
             <p className="subreddit-description">{description}</p>
             <p className="subreddit-mini-stats">
               <strong>{subReddit.points}</strong> total points,{" "}
@@ -70,7 +76,7 @@ class SubReddits extends React.Component {
               <strong>{subReddit.about.data.accounts_active}</strong> active
               users
             </p>
-          </div>
+          </Link>
         );
       });
 
