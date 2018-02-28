@@ -66,7 +66,7 @@ const mapStateToProps = (state, ownProps) => {
     if (subReddits && state.entities.topics[currentTopic]) {
       state.entities.topics[currentTopic].forEach(subReddit => {
         if (subReddits[subReddit]) {
-          topicsPoints[currentTopic] += subReddits[subReddit];
+          topicsPoints[currentTopic] += subReddits[subReddit].points;
         }
       });
     }

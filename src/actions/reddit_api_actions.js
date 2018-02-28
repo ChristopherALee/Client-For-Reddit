@@ -47,6 +47,7 @@ const receiveSubRedditAbout = (about, subReddit) => {
   return {
     type: RECEIVE_SUBREDDIT_ABOUT,
     subReddit,
+    posts: about.data.children,
     points
   };
 };
