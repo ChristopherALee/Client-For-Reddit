@@ -21,7 +21,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   let relevantSubReddits;
-  debugger;
   if (
     subReddits &&
     subReddits.every(subReddit =>
@@ -48,7 +47,7 @@ const mapStateToProps = (state, ownProps) => {
       );
     }
   }
-  debugger;
+
   return {
     accessToken: accessToken,
     topic: topic,

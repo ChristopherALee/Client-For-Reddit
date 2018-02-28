@@ -63,19 +63,20 @@ class SubReddits extends React.Component {
         return (
           <Link
             to={`/r/${subReddit.about.data.display_name}`}
-            className="subreddit-item"
             key={subReddit.about.data.id}
           >
-            <p className="subreddit-name">
-              {subReddit.about.data.url}: {subReddit.about.data.display_name}
-            </p>
-            <p className="subreddit-description">{description}</p>
-            <p className="subreddit-mini-stats">
-              <strong>{subReddit.points}</strong> total points,{" "}
-              <strong>{subReddit.about.data.subscribers}</strong> subscribers,{" "}
-              <strong>{subReddit.about.data.accounts_active}</strong> active
-              users
-            </p>
+            <div className="subreddit-item">
+              <p className="subreddit-name">
+                {subReddit.about.data.url}: {subReddit.about.data.display_name}
+              </p>
+              <p className="subreddit-description">{description}</p>
+              <p className="subreddit-mini-stats">
+                <strong>{subReddit.points}</strong> total points,{" "}
+                <strong>{subReddit.about.data.subscribers}</strong> subscribers,{" "}
+                <strong>{subReddit.about.data.accounts_active}</strong> active
+                users
+              </p>
+            </div>
           </Link>
         );
       });
