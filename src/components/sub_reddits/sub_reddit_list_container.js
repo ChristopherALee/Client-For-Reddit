@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import SubReddits from "./sub_reddits";
+import SubRedditList from "./sub_reddit_list";
 import {
   fetchRedditAccessToken,
   fetchSubReddits,
@@ -67,4 +67,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubReddits);
+export default connect(mapStateToProps, mapDispatchToProps)(SubRedditList);

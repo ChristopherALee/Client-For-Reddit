@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./main_page.css";
 import TopicsContainer from "../topics/topics_container";
-import SubRedditsContainer from "../sub_reddits/sub_reddits_container";
+import SubRedditListContainer from "../sub_reddits/sub_reddit_list_container";
+import SubRedditContainer from "../sub_reddits/sub_reddit/sub_reddit_container";
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -11,15 +12,6 @@ class MainPage extends React.Component {
     this.homePage = this.homePage.bind(this);
     this.loading = this.loading.bind(this);
   }
-
-  // componentWillReceiveProps(newProps) {
-  //   if (this.props.location.pathname !== newProps.location.pathname) {
-  //     if (newProps.location.pathname.includes("topics")) {
-  //       let currentTopic = newProps.location.pathname.slice(8).toLowerCase();
-  //       this.props.fetchSubReddits(this.props.accessToken, currentTopic);
-  //     }
-  //   }
-  // }
 
   homePage() {
     this.props.history.push("/");
@@ -48,7 +40,8 @@ class MainPage extends React.Component {
         {this.loading()}
 
         <Switch>
-          <Route path="/topics/" component={SubRedditsContainer} />
+          <Route path="/topics/" component={SubRedditListContainer} />
+          <Route path="/r/" component={SubRedditContainer} />
           <Route exact path="/" component={TopicsContainer} />
         </Switch>
       </main>

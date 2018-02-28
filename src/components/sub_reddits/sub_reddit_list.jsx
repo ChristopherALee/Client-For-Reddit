@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./sub_reddits.css";
+import "./sub_reddit_list.css";
 
-class SubReddits extends React.Component {
+class SubRedditList extends React.Component {
   constructor(props) {
     super(props);
 
     this.subReddits = this.subReddits.bind(this);
+    this.numbersWithCommas = this.numbersWithCommas.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,10 @@ class SubReddits extends React.Component {
           }
         });
     });
+  }
+
+  numbersWithCommas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   subReddits() {
@@ -67,14 +72,23 @@ class SubReddits extends React.Component {
           >
             <div className="subreddit-item">
               <p className="subreddit-name">
-                {subReddit.about.data.url}: {subReddit.about.data.display_name}
+                {subReddit.about.data.url.slice(
+                  0,
+                  subReddit.about.data.url.length - 1
+                )}: {subReddit.about.data.display_name}
               </p>
               <p className="subreddit-description">{description}</p>
               <p className="subreddit-mini-stats">
-                <strong>{subReddit.points}</strong> total points,{" "}
-                <strong>{subReddit.about.data.subscribers}</strong> subscribers,{" "}
-                <strong>{subReddit.about.data.accounts_active}</strong> active
-                users
+                <strong>{this.numbersWithCommas(subReddit.points)}</strong>{" "}
+                total points,{" "}
+                <strong>
+                  {this.numbersWithCommas(subReddit.about.data.subscribers)}
+                </strong>{" "}
+                subscribers,{" "}
+                <strong>
+                  {this.numbersWithCommas(subReddit.about.data.accounts_active)}
+                </strong>{" "}
+                active users
               </p>
             </div>
           </Link>
@@ -102,4 +116,4 @@ class SubReddits extends React.Component {
   }
 }
 
-export default SubReddits;
+export default SubRedditList;
