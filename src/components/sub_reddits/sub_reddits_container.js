@@ -14,16 +14,32 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   let topic = ownProps.location.pathname.slice(8);
-  let subReddits;
 
+  let subReddits;
   if (state.entities.topics[topic]) {
     subReddits = state.entities.topics[topic];
+  }
+
+  let relevantSubReddits;
+  if (
+    Object.values(state.entities.subReddits).every(
+      subReddit => Object.values(subReddit).length === 3
+    )
+  ) {
+    relevantSubReddits = Object.values(state.entities.subReddits).filter(
+      subReddit => {
+        return subReddits.includes(
+          subReddit.about.data.url.slice(3, subReddit.about.data.url.length - 1)
+        );
+      }
+    );
   }
 
   return {
     accessToken: accessToken,
     topic: topic,
-    subReddits: subReddits
+    subReddits: subReddits,
+    relevantSubReddits: relevantSubReddits
   };
 };
 

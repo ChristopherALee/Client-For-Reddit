@@ -32,16 +32,43 @@ class SubReddits extends React.Component {
 
   subReddits() {
     let subReddits;
-    if (this.props.subReddits) {
+    let subRedditDetails;
+    if (this.props.subReddits && this.props.relevantSubReddits) {
       subReddits = this.props.subReddits;
+      subRedditDetails = this.props.relevantSubReddits;
 
-      return subReddits.map((subReddit, idx) => {
+      if (subRedditDetails.length) {
+        subRedditDetails = subRedditDetails.sort((a, b) => {
+          let subReddit1 = a.points;
+          let subReddit2 = b.points;
+
+          if (subReddit1 < subReddit2) {
+            return 1;
+          } else if (subReddit1 > subReddit2) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+      }
+
+      let subRedditItems = subRedditDetails.map(subReddit => {
         return (
-          <div className="subreddit-item" key={idx}>
-            <p>{`/r/${subReddit}`}</p>
+          <div className="subreddit-item" key={subReddit.about.data.id}>
+            <p className="subreddit-name">{subReddit.about.data.url}</p>
+            <p className="subreddit-description">
+              {subReddit.about.data.public_description}
+            </p>
+            <p className="subreddit-mini-stats">
+              Total Points: {subReddit.points},{" "}
+              {subReddit.about.data.subscribers} subscribers,{" "}
+              {subReddit.about.data.accounts_active} active users
+            </p>
           </div>
         );
       });
+
+      return subRedditItems;
     }
   }
 
@@ -53,7 +80,7 @@ class SubReddits extends React.Component {
         </Link>
 
         <div className="subreddit-list-header">
-          <p>Top SubReddits</p>
+          <p>Top SubReddits of {this.props.topic}</p>
         </div>
 
         <div className="subreddit-list">{this.subReddits()}</div>
