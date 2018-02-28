@@ -33,8 +33,9 @@ class SubReddits extends React.Component {
   subReddits() {
     let subReddits;
     let subRedditDetails;
-    if (this.props.subReddits && this.props.relevantSubReddits) {
-      subReddits = this.props.subReddits;
+    // debugger;
+    if (this.props.relevantSubReddits) {
+      // debugger;
       subRedditDetails = this.props.relevantSubReddits;
 
       if (subRedditDetails.length) {

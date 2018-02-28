@@ -21,20 +21,39 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   let relevantSubReddits;
+  let subRedditCollection;
+  debugger;
   if (
-    Object.values(state.entities.subReddits).every(
-      subReddit => Object.values(subReddit).length === 3
+    subReddits &&
+    subReddits.every(subReddit =>
+      Object.keys(state.entities.subReddits).includes(subReddit)
     )
   ) {
-    relevantSubReddits = Object.values(state.entities.subReddits).filter(
-      subReddit => {
-        return subReddits.includes(
-          subReddit.about.data.url.slice(3, subReddit.about.data.url.length - 1)
-        );
-      }
+    subRedditCollection = subReddits.filter(subReddit =>
+      Object.keys(state.entities.subReddits).includes(subReddit)
     );
-  }
 
+    if (
+      Object.values(state.entities.subReddits).some(
+        subReddit => subReddit.about
+      )
+    ) {
+      relevantSubReddits = Object.values(state.entities.subReddits).filter(
+        subReddit => {
+          return (
+            subReddit.about &&
+            subReddits.includes(
+              subReddit.about.data.url.slice(
+                3,
+                subReddit.about.data.url.length - 1
+              )
+            )
+          );
+        }
+      );
+    }
+  }
+  debugger;
   return {
     accessToken: accessToken,
     topic: topic,
