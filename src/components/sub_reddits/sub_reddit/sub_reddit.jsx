@@ -8,6 +8,7 @@ class SubReddit extends React.Component {
 
     this.numbersWithCommas = this.numbersWithCommas.bind(this);
     this.existingBannerToggle = this.existingBannerToggle.bind(this);
+    this.postCreationDate = this.postCreationDate.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +45,31 @@ class SubReddit extends React.Component {
     } else {
       return <img className="header-img" src={headerUrl} />;
     }
+  }
+
+  postCreationDate(unixDate) {
+    let conversion = new Date(unixDate * 1000);
+    return String(conversion).slice(0, 15);
+  }
+
+  subRedditPosts() {
+    let posts = Object.values(this.props.subRedditPosts);
+
+    return posts.slice(0, 10).map(post => {
+      let points = post.data.ups - post.data.downs;
+
+      return (
+        <div className="subreddit-post">
+          <p className="subreddit-points">{points}</p>
+          <div className="subreddit-post-content">
+            <p className="subreddit-post-title">{post.data.title}</p>
+            <p className="subreddit-post-stats">
+              submitted {this.postCreationDate(post.data.created)}
+            </p>
+          </div>
+        </div>
+      );
+    });
   }
 
   render() {
@@ -94,6 +120,10 @@ class SubReddit extends React.Component {
                   this.props.subRedditAbout.banner_img,
                   this.props.subRedditAbout.header_img
                 )}
+              </div>
+
+              <div className="subreddit-preview-posts">
+                {this.subRedditPosts()}
               </div>
             </div>
           </section>

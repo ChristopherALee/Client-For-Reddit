@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
   let subRedditDetails;
   let subRedditAbout;
+  let subRedditPosts;
   let description;
   let latestActiveDate;
   if (
@@ -25,6 +26,7 @@ const mapStateToProps = (state, ownProps) => {
   ) {
     subRedditDetails = state.entities.subReddits[currentSubReddit];
     subRedditAbout = subRedditDetails.about.data;
+    subRedditPosts = subRedditDetails.posts;
 
     if (!subRedditDetails.about.data.public_description) {
       description = "No description";
@@ -41,6 +43,7 @@ const mapStateToProps = (state, ownProps) => {
     currentSubReddit: currentSubReddit,
     subRedditDetails: subRedditDetails,
     subRedditAbout: subRedditAbout,
+    subRedditPosts: subRedditPosts,
     description: description,
     latestActiveDate: latestActiveDate
   };

@@ -35,3 +35,22 @@
   left: 0px;
   bottom: 5px;
 }
+
+.subreddit-preview-posts {
+  margin-top: 20px;
+}
+.subreddit-post {
+  display: flex;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+.subreddit-post:last-child {
+  border: none;
+}
+
+.subreddit-points {
+  text-align: center;
+  width: 50px;
+  min-width: 50px;
+  margin-right: 20px;
+}
