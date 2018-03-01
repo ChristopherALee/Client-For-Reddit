@@ -94,10 +94,6 @@ class SubReddit extends React.Component {
                   this.props.subRedditAbout.banner_img,
                   this.props.subRedditAbout.header_img
                 )}
-                {/* <img
-                  className="header-img"
-                  src={this.props.subRedditAbout.header_img}
-                /> */}
               </div>
             </div>
           </section>

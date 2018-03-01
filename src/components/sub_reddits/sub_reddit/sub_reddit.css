@@ -9,12 +9,26 @@
   font-style: italic;
 }
 
+.subreddit-preview {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+}
+
+.subreddit-preview > h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 .subreddit-preview-banner {
   position: relative;
 }
 
 .subreddit-preview-banner > .banner-img {
   width: 100%;
+}
+.subreddit-preview-banner > .banner-img-none {
 }
 .subreddit-preview-banner > .header-img {
   position: absolute;
