@@ -7,6 +7,7 @@ class SubReddit extends React.Component {
     super(props);
 
     this.numbersWithCommas = this.numbersWithCommas.bind(this);
+    this.existingBannerToggle = this.existingBannerToggle.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,14 @@ class SubReddit extends React.Component {
 
   numbersWithCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  existingBannerToggle(bannerUrl, headerUrl) {
+    if (!bannerUrl) {
+      return <img className="header-img-none" src={headerUrl} />;
+    } else {
+      return <img className="header-img" src={headerUrl} />;
+    }
   }
 
   render() {
@@ -81,10 +90,14 @@ class SubReddit extends React.Component {
                   className="banner-img"
                   src={this.props.subRedditAbout.banner_img}
                 />
-                <img
+                {this.existingBannerToggle(
+                  this.props.subRedditAbout.banner_img,
+                  this.props.subRedditAbout.header_img
+                )}
+                {/* <img
                   className="header-img"
                   src={this.props.subRedditAbout.header_img}
-                />
+                /> */}
               </div>
             </div>
           </section>
