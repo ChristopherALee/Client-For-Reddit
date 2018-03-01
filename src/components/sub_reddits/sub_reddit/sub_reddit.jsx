@@ -10,19 +10,27 @@ class SubReddit extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRedditAccessToken().then(success => {
-      this.props
-        .fetchSubRedditPosts(
+    this.props
+      .fetchSubRedditPosts(this.props.accessToken, this.props.currentSubReddit)
+      .then(success => {
+        this.props.fetchSubRedditAbout(
           this.props.accessToken,
           this.props.currentSubReddit
-        )
+        );
+      });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!this.props.accessToken && newProps.accessToken) {
+      newProps
+        .fetchSubRedditPosts(newProps.accessToken, newProps.currentSubReddit)
         .then(success => {
-          this.props.fetchSubRedditAbout(
-            this.props.accessToken,
-            this.props.currentSubReddit
+          newProps.fetchSubRedditAbout(
+            newProps.accessToken,
+            newProps.currentSubReddit
           );
         });
-    });
+    }
   }
 
   numbersWithCommas(num) {
@@ -33,7 +41,7 @@ class SubReddit extends React.Component {
     if (this.props.subRedditDetails) {
       return (
         <div id="subreddit-view">
-          <div className="subreddit-item">
+          <section className="subreddit-item">
             <p className="subreddit-name">
               {this.props.subRedditDetails.about.data.url.slice(
                 0,
@@ -63,11 +71,23 @@ class SubReddit extends React.Component {
               Last Active Date:{" "}
               {this.props.latestActiveDate.toString().slice(0, 15)}
             </p>
-          </div>
+          </section>
 
-          <div>subreddit</div>
-          <div>subreddit details</div>
-          <div className="subreddit-preview">subreddit preview</div>
+          <section className="subreddit-preview">
+            <h3>/r/{this.props.currentSubReddit} Preview</h3>
+            <div className="subreddit-preview-content">
+              <div className="subreddit-preview-banner">
+                <img
+                  className="banner-img"
+                  src={this.props.subRedditAbout.banner_img}
+                />
+                <img
+                  className="header-img"
+                  src={this.props.subRedditAbout.header_img}
+                />
+              </div>
+            </div>
+          </section>
         </div>
       );
     } else {

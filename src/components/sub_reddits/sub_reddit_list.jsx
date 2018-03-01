@@ -13,22 +13,56 @@ class SubRedditList extends React.Component {
   componentDidMount() {
     let that = this;
 
-    this.props.fetchRedditAccessToken().then(success => {
-      this.props
-        .fetchSubReddits(this.props.accessToken, this.props.topic)
+    this.props
+      .fetchSubReddits(this.props.accessToken, this.props.topic)
+      .then(success => {
+        for (let i = 0; i < success.length; i++) {
+          this.props
+            .fetchSubRedditPosts(this.props.accessToken, success[i].name)
+            .then(success => {
+              this.props.fetchSubRedditAbout(
+                this.props.accessToken,
+                success.data.children[0].data.subreddit
+              );
+            });
+        }
+      });
+
+    // this.props.fetchRedditAccessToken().then(success => {
+    //   this.props
+    //     .fetchSubReddits(this.props.accessToken, this.props.topic)
+    //     .then(success => {
+    //       for (let i = 0; i < success.length; i++) {
+    //         that.props
+    //           .fetchSubRedditPosts(this.props.accessToken, success[i].name)
+    //           .then(success => {
+    //             this.props.fetchSubRedditAbout(
+    //               this.props.accessToken,
+    //               success.data.children[0].data.subreddit
+    //             );
+    //           });
+    //       }
+    //     });
+    // });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!this.props.accessToken && newProps.accessToken) {
+      newProps
+        .fetchSubReddits(newProps.accessToken, newProps.topic)
         .then(success => {
           for (let i = 0; i < success.length; i++) {
-            that.props
-              .fetchSubRedditPosts(this.props.accessToken, success[i].name)
+            newProps
+              .fetchSubRedditPosts(newProps.accessToken, success[i].name)
               .then(success => {
-                this.props.fetchSubRedditAbout(
-                  this.props.accessToken,
+                newProps.fetchSubRedditAbout(
+                  newProps.accessToken,
                   success.data.children[0].data.subreddit
                 );
               });
           }
         });
-    });
+    }
   }
 
   numbersWithCommas(num) {

@@ -1,62 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import $ from "jquery";
 import "./topics.css";
-
-const TOPICS = [
-  "Architecture",
-  "Art",
-  "Business",
-  "Education",
-  "Entertainment",
-  "Gaming",
-  "General",
-  "Hobbies and Interests",
-  "Law",
-  "Lifestyle",
-  "Locations",
-  "Meta",
-  "Music",
-  "News and Politics",
-  "Science",
-  "Social Science and Humanities",
-  "Sports",
-  "Technology",
-  "Travel",
-  "Other"
-];
 
 class Topics extends React.Component {
   constructor(props) {
     super(props);
 
     this.redditTopics = this.redditTopics.bind(this);
-  }
-
-  componentDidMount() {
-    let counter = 0;
-
-    this.props.fetchRedditAccessToken().then(success => {
-      for (let i = 0; i < TOPICS.length; i++) {
-        let isLoading = true;
-        if (counter === TOPICS.length - 2) {
-          isLoading = false;
-        }
-
-        this.props
-          .fetchSubReddits(this.props.accessToken, TOPICS[i])
-          .then(success => {
-            for (let j = 0; j < success.length; j++) {
-              this.props.fetchSubRedditPosts(
-                this.props.accessToken,
-                success[j].name,
-                isLoading
-              );
-            }
-          });
-
-        counter += 1;
-      }
-    });
   }
 
   redditTopics() {

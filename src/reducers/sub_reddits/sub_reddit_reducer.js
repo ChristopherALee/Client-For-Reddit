@@ -11,12 +11,26 @@ const subRedditReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_SUBREDDIT_POSTS:
-      newState = Object.assign({}, state, {
-        [action.subReddit]: {
-          ["posts"]: action.posts,
-          ["points"]: action.points
-        }
-      });
+      newState = Object.assign({}, state);
+      if (newState[action.subReddit]) {
+        subReddit = newState[action.subReddit];
+        subReddit["posts"] = action.posts;
+        subReddit["points"] = action.points;
+        newState = Object.assign({}, state, { [action.subReddit]: subReddit });
+      } else {
+        newState = Object.assign({}, state, {
+          [action.subReddit]: {
+            ["posts"]: action.posts,
+            ["points"]: action.points
+          }
+        });
+      }
+      // newState = Object.assign({}, state, {
+      //   [action.subReddit]: {
+      //     ["posts"]: action.posts,
+      //     ["points"]: action.points
+      //   }
+      // });
       return newState;
     case RECEIVE_SUBREDDIT_ABOUT:
       newState = Object.assign({}, state);

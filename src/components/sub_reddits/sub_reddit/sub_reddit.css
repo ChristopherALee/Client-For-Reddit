@@ -8,3 +8,16 @@
   color: grey;
   font-style: italic;
 }
+
+.subreddit-preview-banner {
+  position: relative;
+}
+
+.subreddit-preview-banner > .banner-img {
+  width: 100%;
+}
+.subreddit-preview-banner > .header-img {
+  position: absolute;
+  left: 0px;
+  bottom: 5px;
+}

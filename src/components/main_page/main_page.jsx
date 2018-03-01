@@ -5,12 +5,65 @@ import TopicsContainer from "../topics/topics_container";
 import SubRedditListContainer from "../sub_reddits/sub_reddit_list_container";
 import SubRedditContainer from "../sub_reddits/sub_reddit/sub_reddit_container";
 
+const TOPICS = [
+  "Architecture",
+  "Art",
+  "Business",
+  "Education",
+  "Entertainment",
+  "Gaming",
+  "General",
+  "Hobbies and Interests",
+  "Law",
+  "Lifestyle",
+  "Locations",
+  "Meta",
+  "Music",
+  "News and Politics",
+  "Science",
+  "Social Science and Humanities",
+  "Sports",
+  "Technology",
+  "Travel",
+  "Other"
+];
+
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.homePage = this.homePage.bind(this);
     this.loading = this.loading.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchRedditAccessToken().then(success => {
+      let counter = 0;
+      this.props.fetchSubRedditAbout(
+        this.props.accessToken,
+        this.props.currentSubReddit
+      );
+      for (let i = 0; i < TOPICS.length; i++) {
+        let isLoading = true;
+        if (counter === TOPICS.length - 2) {
+          isLoading = false;
+        }
+
+        this.props
+          .fetchSubReddits(this.props.accessToken, TOPICS[i])
+          .then(success => {
+            for (let j = 0; j < success.length; j++) {
+              this.props.fetchSubRedditPosts(
+                this.props.accessToken,
+                success[j].name,
+                isLoading
+              );
+            }
+          });
+
+        counter += 1;
+      }
+    });
   }
 
   homePage() {

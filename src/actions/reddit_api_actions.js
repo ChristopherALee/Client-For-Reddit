@@ -1,5 +1,28 @@
 import * as RedditApiUtil from "../util/reddit_api_util";
 
+const TOPICS = [
+  "Architecture",
+  "Art",
+  "Business",
+  "Education",
+  "Entertainment",
+  "Gaming",
+  "General",
+  "Hobbies and Interests",
+  "Law",
+  "Lifestyle",
+  "Locations",
+  "Meta",
+  "Music",
+  "News and Politics",
+  "Science",
+  "Social Science and Humanities",
+  "Sports",
+  "Technology",
+  "Travel",
+  "Other"
+];
+
 export const RECEIVE_ACCESS_TOKEN = "RECEIVE_ACCESS_TOKEN";
 export const RECEIVE_SUBREDDITS = "RECEIVE_SUBREDDITS";
 export const RECEIVE_SUBREDDIT_ABOUT = "RECEIVE_SUBREDDIT_ABOUT";
@@ -19,6 +42,10 @@ const hideLoading = () => {
     type: HIDE_LOADING,
     loadingShown: false
   };
+};
+
+export const removeLoading = () => dispatch => {
+  return dispatch(hideLoading());
 };
 
 const receiveAccessToken = token => {
@@ -84,6 +111,7 @@ export const fetchRedditAccessToken = () => dispatch => {
 };
 
 export const fetchSubReddits = (token, topic) => dispatch => {
+  dispatch(showLoading());
   return RedditApiUtil.fetchSubReddits(token, topic).then(subReddits => {
     dispatch(receiveSubReddits(subReddits, topic));
     return subReddits;
@@ -116,4 +144,21 @@ export const fetchSubRedditPoints = (token, subReddit) => dispatch => {
     dispatch(receiveSubRedditPoints(about));
     return about;
   });
+};
+
+export const fetchRedditInfo = token => dispatch => {
+  let apiCalls = [];
+
+  for (let i = 0; i < TOPICS.length; i++) {
+    let fetchRedditInfoCall = () =>
+      fetchSubReddits(token, TOPICS[i]).then(subreddits => {
+        for (let j = 0; j < subreddits.length; j++) {
+          fetchSubRedditPosts(token, subreddits[j].name);
+        }
+      });
+
+    apiCalls.push(new Promise(fetchRedditInfoCall));
+  }
+
+  return apiCalls;
 };
