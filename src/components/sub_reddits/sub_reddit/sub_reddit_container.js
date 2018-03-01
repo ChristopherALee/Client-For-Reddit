@@ -16,18 +16,30 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   let subRedditDetails;
+  let description;
+  let latestActiveDate;
   if (
     state.entities.subReddits[currentSubReddit] &&
     state.entities.subReddits[currentSubReddit].about
   ) {
-    debugger;
     subRedditDetails = state.entities.subReddits[currentSubReddit];
+
+    if (!subRedditDetails.about.data.public_description) {
+      description = "No description";
+    } else {
+      description = subRedditDetails.about.data.public_description;
+    }
+
+    let latestPost = subRedditDetails.posts.reverse()[0];
+    latestActiveDate = new Date(latestPost.data.created * 1000);
   }
 
   return {
     accessToken: accessToken,
     currentSubReddit: currentSubReddit,
-    subRedditDetails: subRedditDetails
+    subRedditDetails: subRedditDetails,
+    description: description,
+    latestActiveDate: latestActiveDate
   };
 };
 

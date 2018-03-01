@@ -31,18 +31,6 @@ class SubReddit extends React.Component {
 
   render() {
     if (this.props.subRedditDetails) {
-      let description;
-      if (!this.props.subRedditDetails.about.data.public_description) {
-        description = "No description";
-      } else {
-        description = this.props.subRedditDetails.about.data.public_description;
-      }
-
-      let latestPost = this.props.subRedditDetails.posts[
-        this.props.subRedditDetails.posts.length - 1
-      ];
-      let latestActiveDate = new Date(latestPost.data.created * 1000);
-
       return (
         <div id="subreddit-view">
           <div className="subreddit-item">
@@ -52,7 +40,7 @@ class SubReddit extends React.Component {
                 this.props.subRedditDetails.about.data.url.length - 1
               )}: {this.props.subRedditDetails.about.data.display_name}
             </p>
-            <p className="subreddit-description">{description}</p>
+            <p className="subreddit-description">{this.props.description}</p>
             <p className="subreddit-mini-stats">
               <strong>
                 {this.numbersWithCommas(this.props.subRedditDetails.points)}
@@ -72,7 +60,8 @@ class SubReddit extends React.Component {
               active users
             </p>
             <p className="last-active-stats">
-              Last Active Date: {latestActiveDate.toString().slice(0, 15)}
+              Last Active Date:{" "}
+              {this.props.latestActiveDate.toString().slice(0, 15)}
             </p>
           </div>
 
