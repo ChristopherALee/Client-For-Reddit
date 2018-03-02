@@ -126,7 +126,11 @@ class SubReddit extends React.Component {
         <div className="subreddit-post">
           <p className="subreddit-points">{points}</p>
           <div className="subreddit-post-content">
-            <p className="subreddit-post-title">{title}</p>
+            <p className="subreddit-post-title">
+              <a href={post.data.url} target="_blank">
+                {title}
+              </a>
+            </p>
             <div className="subreddit-post-stats">
               submitted on {this.postCreationDate(post.data.created)} by{" "}
               <p className="post-author">{post.data.author}</p>

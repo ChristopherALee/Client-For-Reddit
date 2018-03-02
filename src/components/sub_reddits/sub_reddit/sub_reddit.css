@@ -75,7 +75,9 @@
 
 .subreddit-post-title {
   font-weight: 600;
-  margin-bottom: 5px;
+  font-size: 14px;
+  margin-bottom: 3px;
+  line-height: 18px;
 }
 
 .subreddit-post-stats {
