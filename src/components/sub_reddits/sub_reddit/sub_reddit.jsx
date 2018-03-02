@@ -80,23 +80,33 @@ class SubReddit extends React.Component {
     if (this.state.page === 0) {
       return (
         <div className="preview-pagination">
+          <p className="inactive-button">prev</p>
           <Pagination page={this.state.page + 1} />
-          <p onClick={this.nextPage}>Next</p>
+          <p className="active-button" onClick={this.nextPage}>
+            next
+          </p>
         </div>
       );
     } else if (this.state.page === 9) {
       return (
         <div className="preview-pagination">
-          <p onClick={this.prevPage}>prev</p>
+          <p className="active-button" onClick={this.prevPage}>
+            prev
+          </p>
           <Pagination page={this.state.page + 1} />
+          <p className="inactive-button">next</p>
         </div>
       );
     } else {
       return (
         <div className="preview-pagination">
-          <p onClick={this.prevPage}>prev</p>
+          <p className="active-button" onClick={this.prevPage}>
+            prev
+          </p>
           <Pagination page={this.state.page + 1} />
-          <p onClick={this.nextPage}>next</p>
+          <p className="active-button" onClick={this.nextPage}>
+            next
+          </p>
         </div>
       );
     }
