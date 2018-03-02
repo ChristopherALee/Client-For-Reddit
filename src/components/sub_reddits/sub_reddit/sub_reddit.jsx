@@ -121,24 +121,21 @@ class SubReddit extends React.Component {
       slicePage = this.state.page + (this.state.page * 10 - this.state.page);
     }
     debugger;
-    return posts
-      .reverse()
-      .slice(slicePage, slicePage + 10)
-      .map(post => {
-        let points = post.data.ups - post.data.downs;
+    return posts.slice(slicePage, slicePage + 10).map(post => {
+      let points = post.data.ups - post.data.downs;
 
-        return (
-          <div className="subreddit-post">
-            <p className="subreddit-points">{points}</p>
-            <div className="subreddit-post-content">
-              <p className="subreddit-post-title">{post.data.title}</p>
-              <p className="subreddit-post-stats">
-                submitted {this.postCreationDate(post.data.created)}
-              </p>
-            </div>
+      return (
+        <div className="subreddit-post">
+          <p className="subreddit-points">{points}</p>
+          <div className="subreddit-post-content">
+            <p className="subreddit-post-title">{post.data.title}</p>
+            <p className="subreddit-post-stats">
+              submitted {this.postCreationDate(post.data.created)}
+            </p>
           </div>
-        );
-      });
+        </div>
+      );
+    });
   }
 
   render() {
