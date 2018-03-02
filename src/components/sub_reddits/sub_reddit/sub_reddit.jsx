@@ -88,12 +88,14 @@ class SubReddit extends React.Component {
       return (
         <div className="preview-pagination">
           <p onClick={this.prevPage}>prev</p>
+          <Pagination page={this.state.page + 1} />
         </div>
       );
     } else {
       return (
         <div className="preview-pagination">
           <p onClick={this.prevPage}>prev</p>
+          <Pagination page={this.state.page + 1} />
           <p onClick={this.nextPage}>next</p>
         </div>
       );
