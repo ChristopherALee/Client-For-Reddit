@@ -84,7 +84,7 @@ class SubReddit extends React.Component {
           <p onClick={this.nextPage}>Next</p>
         </div>
       );
-    } else if (this.state.page === 10) {
+    } else if (this.state.page === 9) {
       return (
         <div className="preview-pagination">
           <p onClick={this.prevPage}>prev</p>

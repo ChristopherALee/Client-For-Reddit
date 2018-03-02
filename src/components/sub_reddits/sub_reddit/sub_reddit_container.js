@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
   ) {
     subRedditDetails = state.entities.subReddits[currentSubReddit];
     subRedditAbout = subRedditDetails.about.data;
-    subRedditPosts = subRedditDetails.posts;
+    subRedditPosts = subRedditDetails.posts.slice(0, 100);
 
     if (!subRedditDetails.about.data.public_description) {
       description = "No description";
