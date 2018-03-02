@@ -28,7 +28,10 @@ class SubRedditList extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (!this.props.accessToken && newProps.accessToken) {
+    if (
+      (!this.props.accessToken && newProps.accessToken) ||
+      this.props.location.pathname !== newProps.location.pathname
+    ) {
       newProps
         .fetchSubReddits(newProps.accessToken, newProps.topic)
         .then(success => {

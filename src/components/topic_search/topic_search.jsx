@@ -34,7 +34,7 @@ class TopicSearch extends React.Component {
       searchedTopics = searchedTopics.map((topic, idx) => {
         return (
           <li key={idx}>
-            <p>{topic}</p>
+            <Link to={`/topics/${topic}`}>{topic}</Link>
           </li>
         );
       });
