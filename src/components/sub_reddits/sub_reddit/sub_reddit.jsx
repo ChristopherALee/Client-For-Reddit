@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./sub_reddit.css";
+import Pagination from "./pagination/pagination";
 
 class SubReddit extends React.Component {
   constructor(props) {
@@ -19,14 +20,18 @@ class SubReddit extends React.Component {
   }
 
   componentDidMount() {
-    this.props
-      .fetchSubRedditPosts(this.props.accessToken, this.props.currentSubReddit)
-      .then(success => {
-        this.props.fetchSubRedditAbout(
-          this.props.accessToken,
-          this.props.currentSubReddit
-        );
-      });
+    // this.props
+    //   .fetchSubRedditPosts(
+    //     this.props.accessToken,
+    //     this.props.currentSubReddit,
+    //     true
+    //   )
+    //   .then(success => {
+    this.props.fetchSubRedditAbout(
+      this.props.accessToken,
+      this.props.currentSubReddit
+    );
+    // });
   }
 
   componentWillReceiveProps(newProps) {
@@ -75,37 +80,20 @@ class SubReddit extends React.Component {
     if (this.state.page === 0) {
       return (
         <div className="preview-pagination">
-          {/* <ul>
-            <Link to={`/r/${this.props.currentSubReddit}/1`}>1</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/2`}>2</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/3`}>3</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/4`}>4</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/5`}>5</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/6`}>6</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/7`}>7</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/8`}>8</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/9`}>9</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/10`}>10</Link>
-          </ul> */}
+          <Pagination page={this.state.page + 1} />
           <p onClick={this.nextPage}>Next</p>
+        </div>
+      );
+    } else if (this.state.page === 10) {
+      return (
+        <div className="preview-pagination">
+          <p onClick={this.prevPage}>prev</p>
         </div>
       );
     } else {
       return (
         <div className="preview-pagination">
           <p onClick={this.prevPage}>prev</p>
-          {/* <ul>
-            <Link to={`/r/${this.props.currentSubReddit}/1`}>1</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/2`}>2</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/3`}>3</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/4`}>4</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/5`}>5</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/6`}>6</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/7`}>7</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/8`}>8</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/9`}>9</Link>
-            <Link to={`/r/${this.props.currentSubReddit}/10`}>10</Link>
-          </ul> */}
           <p onClick={this.nextPage}>next</p>
         </div>
       );

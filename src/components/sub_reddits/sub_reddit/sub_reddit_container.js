@@ -34,7 +34,7 @@ const mapStateToProps = (state, ownProps) => {
       description = subRedditDetails.about.data.public_description;
     }
 
-    let latestPost = subRedditDetails.posts.reverse()[0];
+    let latestPost = subRedditPosts[subRedditPosts.length - 1];
     latestActiveDate = new Date(latestPost.data.created * 1000);
   }
 
