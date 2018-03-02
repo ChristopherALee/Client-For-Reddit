@@ -86,8 +86,8 @@ class MainPage extends React.Component {
   render() {
     return (
       <main id="main-page">
-        <div className="reddit-header" onClick={this.homePage}>
-          <div className="reddit-header-left">
+        <div className="reddit-header">
+          <div className="reddit-header-left" onClick={this.homePage}>
             <div className="logo" />
             <p className="reddit-header-title">A Client for Reddit</p>
           </div>

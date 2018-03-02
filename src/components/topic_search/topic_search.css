@@ -1,12 +1,20 @@
 .topic-search-bar {
-  width: 150px;
+  width: 200px;
+  min-width: 200px;
   padding: 5px;
   border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.topic-search-bar:focus {
+  border: 1px solid #5f99cf;
 }
 
 .topic-search-results {
   position: absolute;
-  width: 150px;
+  width: 200px;
+  min-width: 200px;
   padding: 10px 5px;
   background-color: white;
   border: 1px solid #ccc;
