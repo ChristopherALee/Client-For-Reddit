@@ -4,6 +4,7 @@ import "./main_page.css";
 import TopicsContainer from "../topics/topics_container";
 import SubRedditListContainer from "../sub_reddits/sub_reddit_list_container";
 import SubRedditContainer from "../sub_reddits/sub_reddit/sub_reddit_container";
+import TopicSearch from "../topic_search/topic_search";
 
 const TOPICS = [
   "Architecture",
@@ -86,8 +87,13 @@ class MainPage extends React.Component {
     return (
       <main id="main-page">
         <div className="reddit-header" onClick={this.homePage}>
-          <div className="logo" />
-          <p className="reddit-header-title">A Client for Reddit</p>
+          <div className="reddit-header-left">
+            <div className="logo" />
+            <p className="reddit-header-title">A Client for Reddit</p>
+          </div>
+          <div className="reddit-header-right">
+            <TopicSearch topics={TOPICS} />
+          </div>
         </div>
 
         {this.loading()}

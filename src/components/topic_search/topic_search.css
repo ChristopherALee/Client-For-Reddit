@@ -1,0 +1,23 @@
+.topic-search-bar {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.topic-search-results {
+  position: absolute;
+  width: 150px;
+  padding: 10px 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  list-style-type: none;
+}
+
+.topic-search-results > li {
+  margin-bottom: 10px;
+}
+
+.topic-search-results > li:last-child {
+  margin: 0;
+}

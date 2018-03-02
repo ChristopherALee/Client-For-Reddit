@@ -9,16 +9,28 @@
   border-bottom: 1px solid #5f99cf;
   height: 60px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
   z-index: 5;
 }
-.reddit-header:hover {
+
+.reddit-header-left:hover {
   cursor: pointer;
   color: white;
   transition: 0.1s;
 }
+
+.reddit-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.reddit-header-right {
+  margin-right: 10px;
+}
+
 .logo {
   height: 50px;
   width: 50px;
@@ -27,6 +39,7 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .reddit-header-title {
   font-weight: 600;
   font-size: 20px;
