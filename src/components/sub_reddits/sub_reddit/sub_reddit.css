@@ -42,6 +42,7 @@
   border-radius: 3px;
 }
 .subreddit-post {
+  box-sizing: border-box;
   display: flex;
   height: 80px;
   align-items: center;
@@ -57,8 +58,14 @@
   justify-content: center;
   height: 100%;
   text-align: center;
-  width: 50px;
-  min-width: 50px;
+  width: 60px;
+  min-width: 60px;
   margin-right: 20px;
   background-color: #efeeee;
+  font-weight: 600;
+}
+
+.subreddit-post-title {
+  font-weight: 600;
+  margin-bottom: 3px;
 }

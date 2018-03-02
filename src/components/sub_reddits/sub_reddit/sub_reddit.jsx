@@ -6,9 +6,16 @@ class SubReddit extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      page: 0
+    };
+
     this.numbersWithCommas = this.numbersWithCommas.bind(this);
     this.existingBannerToggle = this.existingBannerToggle.bind(this);
     this.postCreationDate = this.postCreationDate.bind(this);
+    this.prevPage = this.prevPage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.previewPagination = this.previewPagination.bind(this);
   }
 
   componentDidMount() {
@@ -52,12 +59,71 @@ class SubReddit extends React.Component {
     return String(conversion).slice(0, 15);
   }
 
-  subRedditPosts() {
+  prevPage() {
+    let currentPage = this.state.page;
+    this.setState({ ["page"]: currentPage - 1 });
+  }
+
+  nextPage() {
+    let currentPage = this.state.page;
+    this.setState({ ["page"]: currentPage + 1 });
+  }
+
+  previewPagination() {
     let posts = Object.values(this.props.subRedditPosts);
 
+    if (this.state.page === 0) {
+      return (
+        <div className="preview-pagination">
+          {/* <ul>
+            <Link to={`/r/${this.props.currentSubReddit}/1`}>1</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/2`}>2</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/3`}>3</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/4`}>4</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/5`}>5</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/6`}>6</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/7`}>7</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/8`}>8</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/9`}>9</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/10`}>10</Link>
+          </ul> */}
+          <p onClick={this.nextPage}>Next</p>
+        </div>
+      );
+    } else {
+      return (
+        <div className="preview-pagination">
+          <p onClick={this.prevPage}>prev</p>
+          {/* <ul>
+            <Link to={`/r/${this.props.currentSubReddit}/1`}>1</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/2`}>2</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/3`}>3</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/4`}>4</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/5`}>5</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/6`}>6</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/7`}>7</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/8`}>8</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/9`}>9</Link>
+            <Link to={`/r/${this.props.currentSubReddit}/10`}>10</Link>
+          </ul> */}
+          <p onClick={this.nextPage}>next</p>
+        </div>
+      );
+    }
+  }
+
+  subRedditPosts() {
+    let posts = Object.values(this.props.subRedditPosts);
+    let slicePage;
+    if (this.state.page === 0) {
+      slicePage = 0;
+    } else {
+      slicePage = this.state.page + (this.state.page * 10 - this.state.page);
+    }
+    debugger;
     return posts
       .reverse()
-      .slice(0, 10)
+      .slice(slicePage, slicePage + 10)
       .map(post => {
         let points = post.data.ups - post.data.downs;
 
@@ -129,6 +195,8 @@ class SubReddit extends React.Component {
                 {this.subRedditPosts()}
               </div>
             </div>
+
+            <div className="preview-pagination">{this.previewPagination()}</div>
           </section>
         </div>
       );
