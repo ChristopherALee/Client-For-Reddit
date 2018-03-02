@@ -55,21 +55,24 @@ class SubReddit extends React.Component {
   subRedditPosts() {
     let posts = Object.values(this.props.subRedditPosts);
 
-    return posts.slice(0, 10).map(post => {
-      let points = post.data.ups - post.data.downs;
+    return posts
+      .reverse()
+      .slice(0, 10)
+      .map(post => {
+        let points = post.data.ups - post.data.downs;
 
-      return (
-        <div className="subreddit-post">
-          <p className="subreddit-points">{points}</p>
-          <div className="subreddit-post-content">
-            <p className="subreddit-post-title">{post.data.title}</p>
-            <p className="subreddit-post-stats">
-              submitted {this.postCreationDate(post.data.created)}
-            </p>
+        return (
+          <div className="subreddit-post">
+            <p className="subreddit-points">{points}</p>
+            <div className="subreddit-post-content">
+              <p className="subreddit-post-title">{post.data.title}</p>
+              <p className="subreddit-post-stats">
+                submitted {this.postCreationDate(post.data.created)}
+              </p>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
   }
 
   render() {

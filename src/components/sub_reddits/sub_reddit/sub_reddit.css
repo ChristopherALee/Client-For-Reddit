@@ -38,10 +38,13 @@
 
 .subreddit-preview-posts {
   margin-top: 20px;
+  background-color: white;
+  border-radius: 3px;
 }
 .subreddit-post {
   display: flex;
-  padding: 20px 0;
+  height: 80px;
+  align-items: center;
   border-bottom: 1px solid #ccc;
 }
 .subreddit-post:last-child {
@@ -49,8 +52,13 @@
 }
 
 .subreddit-points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   text-align: center;
   width: 50px;
   min-width: 50px;
   margin-right: 20px;
+  background-color: #efeeee;
 }
