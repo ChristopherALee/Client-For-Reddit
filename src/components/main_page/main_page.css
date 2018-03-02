@@ -16,6 +16,8 @@
 }
 .reddit-header:hover {
   cursor: pointer;
+  color: white;
+  transition: 0.1s;
 }
 .logo {
   height: 50px;

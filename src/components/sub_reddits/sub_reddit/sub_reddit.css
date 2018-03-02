@@ -19,6 +19,10 @@
   background-color: #fafafa;
 }
 
+.subreddit-preview-content {
+  width: 100%;
+}
+
 .subreddit-preview > h3 {
   font-size: 20px;
   font-weight: 600;

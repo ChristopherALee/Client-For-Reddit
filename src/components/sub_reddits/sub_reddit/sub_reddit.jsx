@@ -115,12 +115,18 @@ class SubReddit extends React.Component {
 
     return posts.slice(slicePage, slicePage + 10).map(post => {
       let points = post.data.ups - post.data.downs;
+      let title;
+      if (post.data.title.length > 175) {
+        title = post.data.title.slice(0, 175) + "...";
+      } else {
+        title = post.data.title;
+      }
 
       return (
         <div className="subreddit-post">
           <p className="subreddit-points">{points}</p>
           <div className="subreddit-post-content">
-            <p className="subreddit-post-title">{post.data.title}</p>
+            <p className="subreddit-post-title">{title}</p>
             <p className="subreddit-post-stats">
               submitted {this.postCreationDate(post.data.created)}
             </p>
