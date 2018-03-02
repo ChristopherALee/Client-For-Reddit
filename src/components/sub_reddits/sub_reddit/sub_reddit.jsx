@@ -20,18 +20,10 @@ class SubReddit extends React.Component {
   }
 
   componentDidMount() {
-    // this.props
-    //   .fetchSubRedditPosts(
-    //     this.props.accessToken,
-    //     this.props.currentSubReddit,
-    //     true
-    //   )
-    //   .then(success => {
     this.props.fetchSubRedditAbout(
       this.props.accessToken,
       this.props.currentSubReddit
     );
-    // });
   }
 
   componentWillReceiveProps(newProps) {
@@ -120,7 +112,7 @@ class SubReddit extends React.Component {
     } else {
       slicePage = this.state.page + (this.state.page * 10 - this.state.page);
     }
-    debugger;
+
     return posts.slice(slicePage, slicePage + 10).map(post => {
       let points = post.data.ups - post.data.downs;
 
