@@ -127,9 +127,11 @@ class SubReddit extends React.Component {
           <p className="subreddit-points">{points}</p>
           <div className="subreddit-post-content">
             <p className="subreddit-post-title">{title}</p>
-            <p className="subreddit-post-stats">
-              submitted {this.postCreationDate(post.data.created)}
-            </p>
+            <div className="subreddit-post-stats">
+              submitted on {this.postCreationDate(post.data.created)} by{" "}
+              <p className="post-author">{post.data.author}</p>
+            </div>
+            <p className="post-comment-ct">{post.data.num_comments} comments</p>
           </div>
         </div>
       );
