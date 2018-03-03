@@ -24,6 +24,20 @@
 
 .topic-search-results > li {
   margin-bottom: 10px;
+  padding: 5px;
+}
+
+.topic-search-results > li:hover {
+  cursor: pointer;
+  background-color: #5f99cf;
+}
+
+.topic-search-results > li > a {
+  color: black;
+}
+
+.topic-search-results > li:hover > a {
+  color: white;
 }
 
 .topic-search-results > li:last-child {
@@ -42,6 +56,20 @@
 
 .subreddit-search-results > li {
   margin-bottom: 10px;
+  padding: 5px;
+}
+
+.subreddit-search-results > li:hover {
+  cursor: pointer;
+  background-color: #5f99cf;
+}
+
+.subreddit-search-results > li > a {
+  color: black;
+}
+
+.subreddit-search-results > li:hover > a {
+  color: white;
 }
 
 .subreddit-search-results > li:last-child {

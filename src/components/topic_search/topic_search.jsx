@@ -91,7 +91,7 @@ class TopicSearch extends React.Component {
       searchedSubReddits = searchedSubReddits.map((subReddit, idx) => {
         return (
           <li key={idx} onClick={this.resetSearch}>
-            <Link to={`/r/${subReddit}`}>{subReddit}</Link>
+            <Link to={`/r/${subReddit}`}>/r/{subReddit}</Link>
           </li>
         );
       });
