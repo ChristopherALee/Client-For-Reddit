@@ -138,7 +138,13 @@ class SubReddit extends React.Component {
               submitted on {this.postCreationDate(post.data.created)} by{" "}
               <p className="post-author">{post.data.author}</p>
             </div>
-            <p className="post-comment-ct">{post.data.num_comments} comments</p>
+            <a
+              className="post-comment-ct"
+              href={`https://www.reddit.com${post.data.permalink}`}
+              target="_blank"
+            >
+              {post.data.num_comments} comments
+            </a>
           </div>
         </div>
       );
