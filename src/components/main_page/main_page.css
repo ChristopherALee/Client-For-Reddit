@@ -26,6 +26,7 @@
   display: flex;
   align-items: center;
   min-width: 260px;
+  margin-left: 10px;
 }
 
 .reddit-header-right {
