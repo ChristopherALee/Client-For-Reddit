@@ -27,7 +27,11 @@ class TopicSearch extends React.Component {
 
   clearButton() {
     if (this.state.subRedditSearch) {
-      return <p onClick={this.resetSearch}>X</p>;
+      return (
+        <p className="clear-button" onClick={this.resetSearch}>
+          X
+        </p>
+      );
     } else {
       return null;
     }
@@ -100,7 +104,9 @@ class TopicSearch extends React.Component {
       searchedSubReddits = searchedSubReddits.map((subReddit, idx) => {
         return (
           <li key={idx} onClick={this.resetSearch}>
-            <Link to={`/r/${subReddit}`}>/r/{subReddit}</Link>
+            <Link to={`/r/${subReddit}`}>
+              <p>/r/{subReddit}</p>
+            </Link>
           </li>
         );
       });

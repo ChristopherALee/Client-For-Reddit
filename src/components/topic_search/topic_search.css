@@ -82,3 +82,13 @@
 .subreddit-search-results > li:last-child {
   margin: 0;
 }
+
+.clear-button {
+  color: grey;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.clear-button:hover {
+  color: red;
+}
