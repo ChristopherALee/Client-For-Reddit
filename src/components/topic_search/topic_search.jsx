@@ -25,7 +25,12 @@ class TopicSearch extends React.Component {
   }
 
   resetSearch() {
-    this.setState({ ["currentSearch"]: "", ["searchedTopic"]: "" });
+    this.setState({
+      ["currentSearch"]: "",
+      ["searchedTopic"]: "",
+      ["topicSearch"]: true,
+      ["subRedditSearch"]: false
+    });
   }
 
   autoComplete(topic) {
