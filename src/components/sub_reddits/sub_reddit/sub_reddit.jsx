@@ -123,7 +123,7 @@ class SubReddit extends React.Component {
       }
 
       return (
-        <div className="subreddit-post">
+        <div className="subreddit-post" key={post.data.id}>
           <p className="subreddit-points">{points}</p>
           <div className="subreddit-post-content">
             <p className="subreddit-post-title">
