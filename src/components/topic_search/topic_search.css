@@ -29,3 +29,21 @@
 .topic-search-results > li:last-child {
   margin: 0;
 }
+.subreddit-search-results {
+  position: absolute;
+  width: 200px;
+  min-width: 200px;
+  padding: 10px 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  list-style-type: none;
+}
+
+.subreddit-search-results > li {
+  margin-bottom: 10px;
+}
+
+.subreddit-search-results > li:last-child {
+  margin: 0;
+}

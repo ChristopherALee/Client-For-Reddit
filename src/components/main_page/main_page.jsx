@@ -92,7 +92,7 @@ class MainPage extends React.Component {
             <p className="reddit-header-title">A Client for Reddit</p>
           </div>
           <div className="reddit-header-right">
-            <TopicSearch topics={TOPICS} />
+            <TopicSearch topics={this.props.topics} />
           </div>
         </div>
 
