@@ -30,6 +30,8 @@ class SubReddit extends React.Component {
       (!this.props.accessToken && newProps.accessToken) ||
       this.props.location.pathname !== newProps.location.pathname
     ) {
+      this.setState({ ["page"]: 0 });
+
       newProps
         .fetchSubRedditPosts(newProps.accessToken, newProps.currentSubReddit)
         .then(success => {
