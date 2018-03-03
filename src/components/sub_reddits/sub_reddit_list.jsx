@@ -15,6 +15,9 @@ class SubRedditList extends React.Component {
       this.props
         .fetchSubReddits(this.props.accessToken, this.props.topic)
         .then(success => {
+          if (success.length === 0) {
+            this.props.removeLoading();
+          }
           for (let i = 0; i < success.length; i++) {
             this.props
               .fetchSubRedditPosts(this.props.accessToken, success[i].name)

@@ -4,8 +4,7 @@ import {
   fetchRedditAccessToken,
   fetchSubReddits,
   fetchSubRedditPosts,
-  removeLoading,
-  fetchRedditInfo
+  removeLoading
 } from "../../actions/reddit_api_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -75,8 +74,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(fetchSubReddits(accessToken, topic)),
     fetchSubRedditPosts: (accessToken, subReddit, isLoading) =>
       dispatch(fetchSubRedditPosts(accessToken, subReddit, isLoading)),
-    removeLoading: () => dispatch(removeLoading()),
-    fetchRedditInfo: token => dispatch(fetchRedditInfo(token))
+    removeLoading: () => dispatch(removeLoading())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Topics);

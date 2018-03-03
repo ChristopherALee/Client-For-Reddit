@@ -145,20 +145,3 @@ export const fetchSubRedditPoints = (token, subReddit) => dispatch => {
     return about;
   });
 };
-
-export const fetchRedditInfo = token => dispatch => {
-  let apiCalls = [];
-
-  for (let i = 0; i < TOPICS.length; i++) {
-    let fetchRedditInfoCall = () =>
-      fetchSubReddits(token, TOPICS[i]).then(subreddits => {
-        for (let j = 0; j < subreddits.length; j++) {
-          fetchSubRedditPosts(token, subreddits[j].name);
-        }
-      });
-
-    apiCalls.push(new Promise(fetchRedditInfoCall));
-  }
-
-  return apiCalls;
-};
