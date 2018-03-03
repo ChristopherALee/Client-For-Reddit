@@ -17,7 +17,7 @@ export const redditAPI = () => {
 export const fetchSubReddits = (token, topic) => {
   return $.ajax({
     method: "GET",
-    url: `https://oauth.reddit.com/api/subreddits_by_topic?query=${topic}&limit=50`,
+    url: `https://oauth.reddit.com/api/subreddits_by_topic?query=${topic}`,
     headers: {
       Authorization: `bearer ${token}`
     }
