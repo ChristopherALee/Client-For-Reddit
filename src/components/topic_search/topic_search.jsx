@@ -16,12 +16,21 @@ class TopicSearch extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.resetSearch = this.resetSearch.bind(this);
     this.autoComplete = this.autoComplete.bind(this);
+    this.clearButton = this.clearButton.bind(this);
   }
 
   handleChange(field) {
     return e => {
       this.setState({ [field]: e.target.value });
     };
+  }
+
+  clearButton() {
+    if (this.state.subRedditSearch) {
+      return <p onClick={this.resetSearch}>X</p>;
+    } else {
+      return null;
+    }
   }
 
   resetSearch() {
@@ -105,12 +114,16 @@ class TopicSearch extends React.Component {
   render() {
     return (
       <div id="topic-search">
-        <input
-          className="topic-search-bar"
-          value={this.state.currentSearch}
-          placeholder="Search subreddits by topic..."
-          onChange={this.handleChange("currentSearch")}
-        />
+        <div className="topic-search-bar-container">
+          <input
+            className="topic-search-bar"
+            value={this.state.currentSearch}
+            placeholder="Search subreddits by topic..."
+            onChange={this.handleChange("currentSearch")}
+          />
+
+          {this.clearButton()}
+        </div>
 
         {this.renderTopicResults()}
         {this.renderSubRedditResults()}
