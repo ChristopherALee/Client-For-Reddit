@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./sub_reddit.css";
 import Pagination from "./pagination/pagination";
 

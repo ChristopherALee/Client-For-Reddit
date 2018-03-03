@@ -9,8 +9,6 @@ import {
 } from "../../actions/reddit_api_actions";
 
 const mapStateToProps = (state, ownProps) => {
-  let currentSubReddit = ownProps.location.pathname.slice(3);
-
   let accessToken;
   let subReddits;
   if (state.session) {

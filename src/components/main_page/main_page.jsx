@@ -40,10 +40,7 @@ class MainPage extends React.Component {
   componentDidMount() {
     this.props.fetchRedditAccessToken().then(success => {
       let counter = 0;
-      this.props.fetchSubRedditAbout(
-        this.props.accessToken,
-        this.props.currentSubReddit
-      );
+
       for (let i = 0; i < TOPICS.length; i++) {
         let isLoading = true;
         if (counter === TOPICS.length - 2) {
