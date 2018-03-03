@@ -11,12 +11,17 @@ class TopicSearch extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.resetSearch = this.resetSearch.bind(this);
   }
 
   handleChange(field) {
     return e => {
       this.setState({ [field]: e.target.value });
     };
+  }
+
+  resetSearch() {
+    this.setState({ ["currentSearch"]: "" });
   }
 
   renderTopicResults() {
@@ -33,7 +38,7 @@ class TopicSearch extends React.Component {
 
       searchedTopics = searchedTopics.map((topic, idx) => {
         return (
-          <li key={idx}>
+          <li key={idx} onClick={this.resetSearch}>
             <Link to={`/topics/${topic}`}>{topic}</Link>
           </li>
         );
